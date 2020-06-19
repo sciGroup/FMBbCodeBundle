@@ -25,8 +25,8 @@ class Configuration implements ConfigurationInterface
      */
     public function getConfigTreeBuilder()
     {
-        $treeBuilder = new TreeBuilder();
-        $rootNode    = $treeBuilder->root('fm_bbcode', 'array');
+        $treeBuilder = new TreeBuilder('fm_bbcode');
+        $rootNode    = $treeBuilder->getRootNode();
 
         $rootNode
             ->children()
