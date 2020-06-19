@@ -3,6 +3,7 @@
 namespace FM\BbcodeBundle\Tests;
 
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
+use Twig\Environment;
 
 /**
  * @author Christian Raue <christian.raue@gmail.com>
@@ -12,7 +13,7 @@ use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 abstract class TwigBasedTestCase extends WebTestCase
 {
     /**
-     * @var \Twig_Environment
+     * @var Environment
      */
     protected $twig;
 

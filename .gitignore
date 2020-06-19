@@ -6,3 +6,4 @@ clover.xml
 /vendor/
 /Tests/cache
 /Tests/log
+.phpunit.result.cache

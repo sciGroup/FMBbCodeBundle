@@ -2,15 +2,18 @@
 
 namespace FM\BbcodeBundle\Templating;
 
+use FM\BbcodeBundle\Decoda\DecodaManager;
 use Symfony\Component\DependencyInjection\ContainerInterface;
-use FM\BbcodeBundle\Decoda\DecodaManager as DecodaManager;
+use Twig\Error\RuntimeError;
+use Twig\Extension\AbstractExtension;
+use Twig\TwigFilter;
 
 /**
- * @author Al Ganiev <helios.ag@gmail.com>
+ * @author    Al Ganiev <helios.ag@gmail.com>
  * @copyright 2012-2015 Al Ganiev
- * @license http://www.opensource.org/licenses/mit-license.php MIT License
+ * @license   http://www.opensource.org/licenses/mit-license.php MIT License
  */
-class BbcodeExtension extends \Twig_Extension
+class BbcodeExtension extends AbstractExtension
 {
     /**
      * @var DecodaManager
@@ -26,20 +29,22 @@ class BbcodeExtension extends \Twig_Extension
     }
 
     /**
-     * (non-PHPdoc).
+     * Strip tags.
      *
-     * @see Twig_Extension::getFilters()
+     * @param $value
+     * @param $filterSet
      *
-     * @return array
+     * @return string
+     *
+     * @throws RuntimeError
      */
-    public function getFilters()
+    public function clean($value, $filterSet = DecodaManager::DECODA_DEFAULT)
     {
-        $options = array('is_safe' => array('html'));
+        if (!is_string($value)) {
+            throw new RuntimeError('The filter can be applied to strings only.');
+        }
 
-        return array(
-            new \Twig_SimpleFilter('bbcode_filter', array($this, 'filter'), $options),
-            new \Twig_SimpleFilter('bbcode_clean', array($this, 'clean'), $options),
-        );
+        return $this->decodaManager->get($value, $filterSet)->strip(true);
     }
 
     /**
@@ -49,40 +54,38 @@ class BbcodeExtension extends \Twig_Extension
      * @return string
      * @return \FM\BbcodeBundle\Decoda\Decoda
      *
-     * @throws \Twig_Error_Runtime
+     * @throws RuntimeError
      */
     public function filter($value, $filterSet = DecodaManager::DECODA_DEFAULT)
     {
         if (!is_string($value)) {
-            throw new \Twig_Error_Runtime('The filter can be applied to strings only.');
+            throw new RuntimeError('The filter can be applied to strings only.');
         }
 
         return $this->decodaManager->get($value, $filterSet)->parse();
     }
 
     /**
-     * Strip tags.
+     * (non-PHPdoc).
      *
-     * @param $value
-     * @param $filterSet
+     * @return array
+     * @see AbstractExtension::getFilters()
      *
-     * @return string
-     *
-     * @throws \Twig_Error_Runtime
      */
-    public function clean($value, $filterSet = DecodaManager::DECODA_DEFAULT)
+    public function getFilters()
     {
-        if (!is_string($value)) {
-            throw new \Twig_Error_Runtime('The filter can be applied to strings only.');
-        }
+        $options = ['is_safe' => ['html']];
 
-        return $this->decodaManager->get($value, $filterSet)->strip(true);
+        return [
+            new TwigFilter('bbcode_filter', [$this, 'filter'], $options),
+            new TwigFilter('bbcode_clean', [$this, 'clean'], $options),
+        ];
     }
 
     /**
      * (non-PHPdoc).
      *
-     * @see Twig_ExtensionInterface::getName()
+     * @see AbstractExtension::getName()
      */
     public function getName()
     {
