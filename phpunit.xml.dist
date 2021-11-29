@@ -12,7 +12,7 @@
         <whitelist addUncoveredFilesFromWhitelist="true">
             <directory>./</directory>
             <exclude>
-                <directory>./Resources</directory>
+                <directory>./src/Resources</directory>
                 <directory>./Tests</directory>
                 <directory>./vendor</directory>
             </exclude>

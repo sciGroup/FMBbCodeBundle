@@ -3,7 +3,6 @@
 namespace FM\BbcodeBundle\Templating;
 
 use FM\BbcodeBundle\Decoda\DecodaManager;
-use Symfony\Component\DependencyInjection\ContainerInterface;
 use Twig\Error\RuntimeError;
 use Twig\Extension\AbstractExtension;
 use Twig\TwigFilter;
