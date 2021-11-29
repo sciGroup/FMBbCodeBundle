@@ -17,7 +17,7 @@ class DecodaManagerTest extends TestCase
      */
     protected $object;
 
-    protected function setUp()
+    protected function setUp(): void
     {
         $container = $this->createMock(ContainerInterface::class);
         $kernel    = $this->createMock(KernelInterface::class);
@@ -32,14 +32,14 @@ class DecodaManagerTest extends TestCase
         $this->object = new DecodaManager($container, $locator, $options);
     }
 
-    public function testHas()
+    public function testHas(): void
     {
         $this->assertTrue($this->object->has(DecodaManager::DECODA_DEFAULT));
         $this->assertTrue($this->object->has('foo'));
         $this->assertFalse($this->object->has('bar'));
     }
 
-    public function testSetFilter()
+    public function testSetFilter(): void
     {
         $filter = $this->createMock(Filter::class);
         $this->object->setFilter('foo', $filter);
@@ -47,7 +47,7 @@ class DecodaManagerTest extends TestCase
         $this->assertSame($filter, $this->object->getFilter('foo'));
     }
 
-    public function testSetHook()
+    public function testSetHook(): void
     {
         $hook = $this->createMock(Hook::class);
         $this->object->setHook('foo', $hook);

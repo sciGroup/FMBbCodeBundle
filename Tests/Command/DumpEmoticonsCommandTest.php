@@ -17,7 +17,7 @@ class DumpEmoticonsCommandTest extends TestCase
     private $emoticonPath;
     private $emoticonFolder;
 
-    public function setUp()
+    public function setUp(): void
     {
         $this->rootDir = __DIR__.'/..';
         $this->webDir  = sys_get_temp_dir().'/symfonyFMBbcodeweb';
@@ -28,7 +28,7 @@ class DumpEmoticonsCommandTest extends TestCase
         $this->emoticonFolder = $this->rootDir.'/../vendor/mjohnson/decoda/emoticons';
     }
 
-    public function tearDown()
+    public function tearDown(): void
     {
         if (!is_dir($this->webDir)) {
             return;
@@ -36,7 +36,7 @@ class DumpEmoticonsCommandTest extends TestCase
         $this->removeDirectory($this->webDir);
     }
 
-    protected function removeDirectory($directory)
+    protected function removeDirectory($directory): void
     {
         $iterator = new \RecursiveIteratorIterator(new \RecursiveDirectoryIterator($directory), \RecursiveIteratorIterator::CHILD_FIRST);
         foreach ($iterator as $path) {
@@ -52,7 +52,7 @@ class DumpEmoticonsCommandTest extends TestCase
         @rmdir($directory);
     }
 
-    public function testExecute()
+    public function testExecute(): void
     {
         $webDir         = $this->webDir;
         $emoticonPath   = $this->emoticonPath;
