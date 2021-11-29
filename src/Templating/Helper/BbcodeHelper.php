@@ -2,7 +2,6 @@
 
 namespace FM\BbcodeBundle\Templating\Helper;
 
-use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\Templating\Helper\Helper;
 use FM\BbcodeBundle\Decoda\DecodaManager;
 use Twig\Error\RuntimeError;
@@ -19,9 +18,6 @@ class BbcodeHelper extends Helper
      */
     protected $decodaManager;
 
-    /**
-     * @param ContainerInterface $container
-     */
     public function __construct(DecodaManager $decodaManager)
     {
         $this->decodaManager = $decodaManager;

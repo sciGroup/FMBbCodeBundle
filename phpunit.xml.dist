@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<phpunit bootstrap="./Tests/bootstrap.php" colors="true">
+<phpunit colors="true">
 
     <testsuites>
         <testsuite name="FMBbcodeBundle test suite">
@@ -12,7 +12,7 @@
         <whitelist addUncoveredFilesFromWhitelist="true">
             <directory>./</directory>
             <exclude>
-                <directory>./Resources</directory>
+                <directory>./src/Resources</directory>
                 <directory>./Tests</directory>
                 <directory>./vendor</directory>
             </exclude>

@@ -3,7 +3,6 @@
 namespace FM\BbcodeBundle\Templating;
 
 use FM\BbcodeBundle\Decoda\DecodaManager;
-use Symfony\Component\DependencyInjection\ContainerInterface;
 use Twig\Error\RuntimeError;
 use Twig\Extension\AbstractExtension;
 use Twig\TwigFilter;
@@ -20,9 +19,6 @@ class BbcodeExtension extends AbstractExtension
      */
     protected $decodaManager;
 
-    /**
-     * @param ContainerInterface $container
-     */
     public function __construct(DecodaManager $decodaManager)
     {
         $this->decodaManager = $decodaManager;
@@ -44,7 +40,8 @@ class BbcodeExtension extends AbstractExtension
             throw new RuntimeError('The filter can be applied to strings only.');
         }
 
-        return $this->decodaManager->get($value, $filterSet)->strip(true);
+        return $this->decodaManager->get($value, $filterSet)
+            ->strip(true);
     }
 
     /**
@@ -62,14 +59,15 @@ class BbcodeExtension extends AbstractExtension
             throw new RuntimeError('The filter can be applied to strings only.');
         }
 
-        return $this->decodaManager->get($value, $filterSet)->parse();
+        return $this->decodaManager->get($value, $filterSet)
+            ->parse();
     }
 
     /**
      * (non-PHPdoc).
      *
      * @return array
-     * @see AbstractExtension::getFilters()
+     * @see Twig_Extension::getFilters()
      *
      */
     public function getFilters()

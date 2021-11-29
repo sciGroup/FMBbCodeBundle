@@ -7,6 +7,7 @@ use Decoda\Loader;
 use Decoda\Hook;
 use Decoda\Filter;
 use Decoda\Decoda as BaseDecoda;
+use DomainException;
 use OutOfRangeException;
 
 /**

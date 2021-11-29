@@ -7,7 +7,7 @@ use PHPUnit\Framework\TestCase;
 
 class DecodaTest extends TestCase
 {
-    public function testSetLocale()
+    public function testSetLocale(): void
     {
         $result = new Decoda();
         $result->setDefaultLocale('en');
@@ -23,7 +23,7 @@ class DecodaTest extends TestCase
     /**
      * @dataProvider getMessage
      */
-    public function testMessage($defaultLocale, $locale, $value, $expect)
+    public function testMessage($defaultLocale, $locale, $value, $expect): void
     {
         if ($expect instanceof \Exception) {
             $this->expectException(get_class($expect));
@@ -58,7 +58,7 @@ class DecodaTest extends TestCase
         $this->assertEquals($expect, $result->message($value));
     }
 
-    public function getMessage()
+    public function getMessage(): array
     {
         return array(
             array(null, 'en', 'foo', 'foo-en'),

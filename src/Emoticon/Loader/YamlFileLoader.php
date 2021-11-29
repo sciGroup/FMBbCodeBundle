@@ -72,7 +72,7 @@ class YamlFileLoader extends FileLoader
      *
      * @return array
      *
-     * @throws InvalidArgumentException When emoticon file is not valid
+     * @throws \InvalidArgumentException When emoticon file is not valid
      */
     private function validate($content, $file)
     {

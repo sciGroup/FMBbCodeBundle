@@ -11,7 +11,7 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
 
 class EmoticonHookTest extends TestCase
 {
-    public function testGetMatcher()
+    public function testGetMatcher(): void
     {
         $expectEmoticon = new Emoticon();
         $expectEmoticon->setSmiley(':foo:');
