@@ -33,7 +33,11 @@
     },
     "autoload": {
         "psr-4": {
-            "FM\\BbcodeBundle\\": "src/",
+            "FM\\BbcodeBundle\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
             "FM\\BbcodeBundle\\Tests\\": "Tests/"
         }
     }
