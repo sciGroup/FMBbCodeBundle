@@ -30,6 +30,11 @@
                 <argument key="default_locale">%kernel.default_locale%</argument>
             </argument>
         </service>
+        <service id="FM\BbcodeBundle\Command\DumpEmoticonsCommand">
+            <argument type="string" id="publicPath">%fm_bbcode.public_path%</argument>
+            <argument type="string" id="emoticonPath">%fm_bbcode.emoticon.path%</argument>
+            <argument type="string" id="emoticonFolder">%fm_bbcode.emoticon.folder%%</argument>
+        </service>
     </services>
 
 </container>
