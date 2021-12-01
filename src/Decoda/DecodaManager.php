@@ -461,7 +461,7 @@ class DecodaManager
     /**
      * Gets a DecodaPhpEngine.
      *
-     * @return DecodaPhpEngine
+     * @return PhpEngine
      */
     private function getPhpEngine()
     {

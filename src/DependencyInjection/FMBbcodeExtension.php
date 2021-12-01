@@ -30,13 +30,13 @@ class FMBbcodeExtension extends Extension
         $loader->load('filters.xml');
         $loader->load('hooks.xml');
 
-        $hooksConfig = isset($config['config']['hooks']) ? $config['config']['hooks'] : array();
+        $hooksConfig = $config['config']['hooks'] ?? [];
         $hooks       = array();
         foreach ($hooksConfig as $hook) {
             $hooks[$hook['classname']] = $hook['class'];
         }
 
-        $filtersConfig = isset($config['config']['filters']) ? $config['config']['filters'] : array();
+        $filtersConfig = $config['config']['filters'] ?? [];
         $filters       = array();
         foreach ($filtersConfig as $filter) {
             $filters[$filter['classname']] = $filter['class'];
@@ -45,8 +45,8 @@ class FMBbcodeExtension extends Extension
         $container->setParameter('fm_bbcode.filter_sets', $config['filter_sets']);
         $container->setParameter('fm_bbcode.config.filters', $filters);
         $container->setParameter('fm_bbcode.config.hooks', $hooks);
-        $container->setParameter('fm_bbcode.config.messages', isset($config['config']['messages']) ? $config['config']['messages'] : null);
-        $container->setParameter('fm_bbcode.config.templates', isset($config['config']['templates']) ? $config['config']['templates'] : array());
+        $container->setParameter('fm_bbcode.config.messages', $config['config']['messages'] ?? null);
+        $container->setParameter('fm_bbcode.config.templates', $config['config']['templates'] ?? []);
 
         if (isset($config['emoticon'])) {
             $this->registerEmoticonConfiguration($config['emoticon'], $container, $loader);
@@ -62,7 +62,7 @@ class FMBbcodeExtension extends Extension
      */
     private function registerEmoticonConfiguration(array $config, ContainerBuilder $container, XmlFileLoader $loader)
     {
-        $container->setParameter('fm_bbcode.emoticon.cache_class_prefix', $container->getParameter('kernel.name').ucfirst($container->getParameter('kernel.environment')));
+        $container->setParameter('fm_bbcode.emoticon.cache_class_prefix', $container->getParameter('kernel.container_class').ucfirst($container->getParameter('kernel.environment')));
         $container->setParameter('fm_bbcode.emoticon.folder', $config['folder']);
 
         $hook     = $container->findDefinition('fm_bbcode.decoda.hook.emoticon');
