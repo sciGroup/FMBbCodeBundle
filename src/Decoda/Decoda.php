@@ -201,7 +201,7 @@ class Decoda extends BaseDecoda
      *
      * @param string $id
      *
-     * @throws InvalidArgumentException
+     * @throws \InvalidArgumentException
      *
      * @return \Decoda\Filter[]
      */
@@ -264,7 +264,7 @@ class Decoda extends BaseDecoda
      *
      * @param string $id
      *
-     * @throws InvalidArgumentException
+     * @throws \InvalidArgumentException
      *
      * @return \Decoda\Hook[]
      */

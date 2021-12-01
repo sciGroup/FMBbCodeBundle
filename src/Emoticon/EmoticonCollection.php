@@ -103,7 +103,7 @@ class EmoticonCollection implements \IteratorAggregate, \Countable
      *
      * @param string $name The emoticon name
      *
-     * @return Emoticons|null A Emoticons instance or null when not found
+     * @return Emoticon|null A Emoticons instance or null when not found
      */
     public function get($name)
     {
