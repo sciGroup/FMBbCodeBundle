@@ -2,6 +2,8 @@
 
 namespace FM\BbcodeBundle\Emoticon;
 
+use Traversable;
+
 /**
  * @author Alexandre Quercia <alquerci@email.com>
  */
@@ -194,7 +196,7 @@ class Emoticon implements \IteratorAggregate
      *
      * @return \ArrayIterator An \ArrayIterator object for iterating over smilies
      */
-    public function getIterator()
+    public function getIterator(): Traversable
     {
         return new \ArrayIterator($this->getSmilies());
     }

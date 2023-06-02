@@ -3,6 +3,7 @@
 namespace FM\BbcodeBundle\Emoticon;
 
 use Symfony\Component\Config\Resource\ResourceInterface;
+use Traversable;
 
 /**
  * @author Alexandre Quercia <alquerci@email.com>
@@ -38,7 +39,7 @@ class EmoticonCollection implements \IteratorAggregate, \Countable
      *
      * @return int The number of emoticons
      */
-    public function count()
+    public function count(): int
     {
         return count($this->emoticons);
     }
@@ -52,7 +53,7 @@ class EmoticonCollection implements \IteratorAggregate, \Countable
      *
      * @return \ArrayIterator An \ArrayIterator object for iterating over emoticons
      */
-    public function getIterator()
+    public function getIterator(): Traversable
     {
         return new \ArrayIterator($this->emoticons);
     }
